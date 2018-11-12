@@ -2,7 +2,7 @@
 
 Middleware used to overcome LDAP paged results, such as with OKTA LDAP, which returns only 200 records, unless paging.
 
-This work around was put in place because most applicanes that refer to LDAP dont support paged results, such as Palo Alto Firewalls.
+This work around was put in place because appliances that use LDAP dont support paged results, such as Palo Alto Firewalls.
 
 ## Installation
 
