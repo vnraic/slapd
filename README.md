@@ -1,7 +1,8 @@
 # OpenLDAP Proxy to OKTA
 
 Middleware used to overcome LDAP paged results, such as with OKTA LDAP, which returns only 200 records, unless paging.
-This does not work for appliances that do not support paged results, like Palo Alto firewalls.
+
+This work around was put in place because most applicanes that refer to LDAP dont support paged results, such as Palo Alto Firewalls.
 
 ## Installation
 
