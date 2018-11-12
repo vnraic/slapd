@@ -1,7 +1,6 @@
 # OpenLDAP Proxy to OKTA
 
-Middleware used to overcome LDAP paged results, such as OKTA LDAP max 200 record.
-In this example we want to retrieve records from OKTA LDAP but they have a max size limit of 200, unless paging.
+Middleware used to overcome LDAP paged results, such as with OKTA LDAP, which returns only 200 records, unless paging.
 This does not work for appliances that do not support paged results, like Palo Alto firewalls.
 
 ## Installation
@@ -17,7 +16,7 @@ apt-get install libdb-dev libtool gnutls-dev libwrap0-dev unixodbc-dev libsasl2-
 Download openldap
 ```
 wget ftp://ftp.openldap.org/pub/OpenLDAP/openldap-release/openldap-2.4.46.tgz
-tar zxf openldap-2.4.46.tgz
+tar zxf openldap-In2.4.46.tgz
 ```
 
 Before we begin compiling, we need to "hash out" components of the code, to enable the `client-pr` function, which by default is not loaded on linux distro. This is why we are using source and compiling.
@@ -27,7 +26,7 @@ Within `servers/slapd/back-meta/` edit the following files `config.c back-meta.h
 #endif /* SLAPD_META_CLIENT_PR */
 ```
 
-Lets prepr for compilitation. The following was gatherd from doing a `apt-get source slapd` and finding out what is compiled on distro
+Prep for compilation. The following was gatherd from doing a `apt-get source slapd` and finding out what is compiled on distro
 ```
 ./configure \
 --prefix=/usr \
@@ -72,7 +71,7 @@ make
 make install
 ```
 
-#### Create certificate, reqiored for TLS
+#### Create certificate, required for TLS
 Instructions for this copied from `https://help.ubuntu.com/lts/serverguide/openldap-server.html.en`. You might want to refer to that for later versioning; 
 
 Create a private key for the Certificate Authority:
@@ -153,9 +152,13 @@ Restart slapd
 #### Separate Logging for slapd
 
 `vi /etc/rsyslog.d/50-default.conf` and edit following line as follows to enable slapd logging :
-`*.*;auth,authpriv,local4.none -/var/log/syslog`
+```
+*.*;auth,authpriv,local4.none -/var/log/syslog
+```
 Add following line there to enable generation of Open LDAP logs in separate file:
-`local4.* -/var/log/slapd/slapd`
+```
+local4.* -/var/log/slapd/slapd`
+```
 
 Create configuration file to manage slapd log rotation, `vi /etc/logrotate.d/slapd`
 ```
