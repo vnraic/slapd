@@ -76,7 +76,9 @@ make install
 Instructions for this copied from `https://help.ubuntu.com/lts/serverguide/openldap-server.html.en`. You might want to refer to that for later versioning; 
 
 Create a private key for the Certificate Authority:
-`sh -c "certtool --generate-privkey > /etc/ssl/private/cakey.pem"`
+```
+sh -c "certtool --generate-privkey > /etc/ssl/private/cakey.pem"
+```
 
 Create the template/file /etc/ssl/ca.info to define the CA:
 ```
