@@ -156,7 +156,7 @@ Restart slapd
 ```
 *.*;auth,authpriv,local4.none -/var/log/syslog
 ```
-Add following line there to enable generation of Open LDAP logs in separate file:
+Add following line there to enable generation of slapd logs in separate file:
 ```
 local4.* -/var/log/slapd/slapd`
 ```
